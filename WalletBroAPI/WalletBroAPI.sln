@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletBroAPI", "WalletBroAPI\WalletBroAPI.csproj", "{EA4D2516-4A52-470C-A4B4-9C2F636F5196}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletBro.UseCases", "WalletBro.UseCases\WalletBro.UseCases.csproj", "{BDDE4A20-47E7-49C2-9DD1-C7491A9DDA21}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletBro.Infrastructure", "WalletBro.Infrastructure\WalletBro.Infrastructure.csproj", "{35DDF68B-E24D-40F7-924C-2A75FCE70FB4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletBro.Core", "WalletBro.Core\WalletBro.Core.csproj", "{72DFFDBC-2F41-46EC-BAB1-70FBD1505FA0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA4D2516-4A52-470C-A4B4-9C2F636F5196}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA4D2516-4A52-470C-A4B4-9C2F636F5196}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA4D2516-4A52-470C-A4B4-9C2F636F5196}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA4D2516-4A52-470C-A4B4-9C2F636F5196}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDDE4A20-47E7-49C2-9DD1-C7491A9DDA21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDDE4A20-47E7-49C2-9DD1-C7491A9DDA21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDDE4A20-47E7-49C2-9DD1-C7491A9DDA21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDDE4A20-47E7-49C2-9DD1-C7491A9DDA21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35DDF68B-E24D-40F7-924C-2A75FCE70FB4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35DDF68B-E24D-40F7-924C-2A75FCE70FB4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35DDF68B-E24D-40F7-924C-2A75FCE70FB4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35DDF68B-E24D-40F7-924C-2A75FCE70FB4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72DFFDBC-2F41-46EC-BAB1-70FBD1505FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72DFFDBC-2F41-46EC-BAB1-70FBD1505FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72DFFDBC-2F41-46EC-BAB1-70FBD1505FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72DFFDBC-2F41-46EC-BAB1-70FBD1505FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
