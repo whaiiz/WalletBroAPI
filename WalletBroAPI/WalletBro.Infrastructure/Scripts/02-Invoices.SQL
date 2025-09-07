@@ -1,0 +1,10 @@
+﻿CREATE TABLE Invoice(
+    Id INT IDENTITY(1,1) PRIMARY KEY,
+    UserId INT NOT NULL,
+    CreatedAt DATETIME2 DEFAULT GETDATE(),
+    CONSTRAINT Fk_Invoice_User
+        FOREIGN KEY (UserId)
+        REFERENCES Users(Id)
+        ON DELETE NO ACTION
+        ON UPDATE NO ACTION
+)
