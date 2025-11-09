@@ -7,7 +7,7 @@
     CreatedAt DATETIME2 DEFAULT GETDATE(),
     CONSTRAINT Fk_ExpenseDetail_Invoice
         FOREIGN KEY (InvoiceId)
-        REFERENCES Invoice(Id)
+        REFERENCES Invoices(Id)
         ON DELETE CASCADE
         ON UPDATE NO ACTION
 )
