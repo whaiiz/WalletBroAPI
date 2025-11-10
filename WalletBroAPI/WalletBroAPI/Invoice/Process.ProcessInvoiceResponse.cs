@@ -2,6 +2,6 @@
 {
     public class ProcessInvoiceResponse
     {
-
+        public bool IsSuccess { get; set; }
     }
 }
