@@ -7,7 +7,8 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="FastEndpoints" Version="6.3.0-beta.9" />
+        <PackageReference Include="FastEndpoints" Version="7.1.0" />
+        <PackageReference Include="FastEndpoints.Swagger" Version="7.1.0" />
         <PackageReference Include="MediatR" Version="13.0.0" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
@@ -16,6 +17,22 @@
     <ItemGroup>
       <ProjectReference Include="..\WalletBro.Infrastructure\WalletBro.Infrastructure.csproj" />
       <ProjectReference Include="..\WalletBro.UseCases\WalletBro.UseCases.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <Compile Update="Invoice\Process.ProcessInvoiceRequest.cs">
+        <DependentUpon>Process.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Invoice\Process.ProcessInvoiceResponse.cs">
+        <DependentUpon>Process.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Invoice\Process.ProcessInvoiceValidator.cs">
+        <DependentUpon>Process.cs</DependentUpon>
+      </Compile>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Folder Include="Auth\" />
     </ItemGroup>
 
 </Project>
