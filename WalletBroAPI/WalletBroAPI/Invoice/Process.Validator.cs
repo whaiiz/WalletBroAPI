@@ -4,9 +4,9 @@ using FluentValidation;
 
 namespace WalletBroAPI.Invoice
 {
-    public class ProcessInvoiceValidator : Validator<ProcessInvoiceRequest>
+    public class ProcessValidator : Validator<ProcessRequest>
     {
-        public ProcessInvoiceValidator()
+        public ProcessValidator()
         {
             RuleFor(x => x.FileName)
                 .NotEmpty()

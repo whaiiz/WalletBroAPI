@@ -5,9 +5,9 @@ using WalletBro.UseCases.Invoice.Process;
 
 namespace WalletBroAPI.Invoice;
 
-public class Process(IMediator mediator) : Endpoint<ProcessInvoiceRequest,
+public class Process(IMediator mediator) : Endpoint<ProcessRequest,
     Results<
-        Ok<ProcessInvoiceResponse>,
+        Ok<ProcessResponse>,
         BadRequest,
         ProblemDetails>>
 {
@@ -17,7 +17,7 @@ public class Process(IMediator mediator) : Endpoint<ProcessInvoiceRequest,
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(ProcessInvoiceRequest req, CancellationToken ct)
+    public override async Task HandleAsync(ProcessRequest req, CancellationToken ct)
     {
         var command = new ProcessInvoiceCommand
         {
@@ -30,7 +30,7 @@ public class Process(IMediator mediator) : Endpoint<ProcessInvoiceRequest,
 
         if (result.IsSuccess)
         {
-            await Send.ResultAsync(TypedResults.Ok<ProcessInvoiceResponse>(new()
+            await Send.ResultAsync(TypedResults.Ok<ProcessResponse>(new()
             {
                 IsSuccess = true
             }));

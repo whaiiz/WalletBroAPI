@@ -1,6 +1,6 @@
 ﻿namespace WalletBroAPI.Invoice
 {
-    public class ProcessInvoiceResponse
+    public class ProcessResponse
     {
         public bool IsSuccess { get; set; }
     }
