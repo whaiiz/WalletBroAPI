@@ -9,7 +9,10 @@
     <ItemGroup>
         <PackageReference Include="FastEndpoints" Version="7.1.0" />
         <PackageReference Include="FastEndpoints.Swagger" Version="7.1.0" />
+        <PackageReference Include="Mapster" Version="9.0.0-pre01" />
+        <PackageReference Include="Mapster.DependencyInjection" Version="9.0.0-pre01" />
         <PackageReference Include="MediatR" Version="13.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.22" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
