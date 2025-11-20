@@ -1,6 +1,6 @@
 ﻿CREATE TABLE Invoices(
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    UserId INT NOT NULL,
+    UserId UNIQUEIDENTIFIER  NOT NULL,
     CreatedAt DATETIME2 DEFAULT GETDATE(),
     CONSTRAINT Fk_Invoice_User
         FOREIGN KEY (UserId)

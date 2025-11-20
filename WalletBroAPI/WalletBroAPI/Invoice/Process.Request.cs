@@ -1,6 +1,6 @@
 ﻿namespace WalletBroAPI.Invoice;
 
-public class ProcessInvoiceRequest
+public class ProcessRequest
 {
     public string FileName { get; set; } = string.Empty;
 

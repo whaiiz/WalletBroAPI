@@ -2,22 +2,18 @@
 using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using WalletBro.UseCases.Invoice.Process;
+using WalletBroAPI.Common;
 
 namespace WalletBroAPI.Invoice;
 
-public class Process(IMediator mediator) : Endpoint<ProcessInvoiceRequest,
-    Results<
-        Ok<ProcessInvoiceResponse>,
-        BadRequest,
-        ProblemDetails>>
+public class Process(IMediator mediator) : Endpoint<ProcessRequest, ApiResponse<ProcessResponse>>
 {
     public override void Configure()
     {
         Post("/invoice/process");
-        AllowAnonymous();
     }
 
-    public override async Task HandleAsync(ProcessInvoiceRequest req, CancellationToken ct)
+    public override async Task HandleAsync(ProcessRequest req, CancellationToken ct)
     {
         var command = new ProcessInvoiceCommand
         {
@@ -28,16 +24,25 @@ public class Process(IMediator mediator) : Endpoint<ProcessInvoiceRequest,
 
         var result = await mediator.Send(command, ct);
 
-        if (result.IsSuccess)
+        if (!result.IsSuccess)
         {
-            await Send.ResultAsync(TypedResults.Ok<ProcessInvoiceResponse>(new()
-            {
-                IsSuccess = true
-            }));
+            var errors = result.ErrorMessages?.Select(e => new ErrorDetail("", e));
+
+            var errorResponse = ApiResponse<ProcessResponse>.Error(
+                message: "Invoice Processing failed",
+                errors: errors
+            );
+
+            await Send.ResponseAsync(errorResponse, statusCode: StatusCodes.Status400BadRequest, cancellation: ct);
+            return;
         }
-        else
-        {
-            await Send.ResultAsync(TypedResults.BadRequest());
-        }
+        
+        var payload = new ProcessResponse();
+        var successResponse = ApiResponse<ProcessResponse>.Success(
+            message: "Process invoice successful",
+            data: payload
+        );
+        
+        await Send.OkAsync(successResponse, cancellation: ct);
     }
 }

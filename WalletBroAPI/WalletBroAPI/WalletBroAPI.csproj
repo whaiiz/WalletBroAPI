@@ -9,7 +9,10 @@
     <ItemGroup>
         <PackageReference Include="FastEndpoints" Version="7.1.0" />
         <PackageReference Include="FastEndpoints.Swagger" Version="7.1.0" />
+        <PackageReference Include="Mapster" Version="9.0.0-pre01" />
+        <PackageReference Include="Mapster.DependencyInjection" Version="9.0.0-pre01" />
         <PackageReference Include="MediatR" Version="13.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.22" />
         <PackageReference Include="Microsoft.AspNetCore.OpenApi" Version="8.0.8" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.4.0" />
     </ItemGroup>
@@ -20,19 +23,33 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Invoice\Process.ProcessInvoiceRequest.cs">
+      <Compile Update="Invoice\Process.Request.cs">
         <DependentUpon>Process.cs</DependentUpon>
       </Compile>
-      <Compile Update="Invoice\Process.ProcessInvoiceResponse.cs">
+      <Compile Update="Invoice\Process.Response.cs">
         <DependentUpon>Process.cs</DependentUpon>
       </Compile>
-      <Compile Update="Invoice\Process.ProcessInvoiceValidator.cs">
+      <Compile Update="Invoice\Process.Validator.cs">
         <DependentUpon>Process.cs</DependentUpon>
       </Compile>
-    </ItemGroup>
-
-    <ItemGroup>
-      <Folder Include="Auth\" />
+      <Compile Update="User\Register.Request.cs">
+        <DependentUpon>Register.cs</DependentUpon>
+      </Compile>
+      <Compile Update="User\Register.Response.cs">
+        <DependentUpon>Register.cs</DependentUpon>
+      </Compile>
+      <Compile Update="User\Register.Validator.cs">
+        <DependentUpon>Register.cs</DependentUpon>
+      </Compile>
+      <Compile Update="User\LoginRequest.cs">
+        <DependentUpon>Login.cs</DependentUpon>
+      </Compile>
+      <Compile Update="User\LoginResponse.cs">
+        <DependentUpon>Login.cs</DependentUpon>
+      </Compile>
+      <Compile Update="User\LoginValidator.cs">
+        <DependentUpon>Login.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>
