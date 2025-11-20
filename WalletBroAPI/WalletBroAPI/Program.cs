@@ -1,17 +1,29 @@
 using System.Data;
+using System.Text;
 using FastEndpoints;
 using FastEndpoints.Swagger;
+using Mapster;
+using MapsterMapper;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Data.SqlClient;
+using Microsoft.IdentityModel.Tokens;
+using WalletBro.Infrastructure.Authentication;
+using WalletBro.Infrastructure.Authentication.Config;
 using WalletBro.Infrastructure.External.InvoiceProcessors.Gemini;
 using WalletBro.Infrastructure.External.InvoiceProcessors.Gemini.Config;
 using WalletBro.Infrastructure.Persistence.Dapper.Repositories;
+using WalletBro.UseCases.Common.Mappings;
+using WalletBro.UseCases.Contracts.Authentication;
 using WalletBro.UseCases.Contracts.External;
 using WalletBro.UseCases.Contracts.Persistence;
 using WalletBro.UseCases.Invoice.Process;
+using WalletBroAPI.Common;
+using WalletBroAPI.Common.Mapping;
+using WalletBroAPI.Common.Middlewares;
+using IMapper = MapsterMapper.IMapper;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddFastEndpoints();
 builder.Services.SwaggerDocument(options =>
 {
     options.DocumentSettings = s => { s.Title = "WalletBro API"; s.Version = "v1"; };
@@ -59,10 +71,9 @@ builder.Services.AddFastEndpoints();
 builder.Services.AddMediatR(cfg =>
     cfg.RegisterServicesFromAssemblyContaining<ProcessInvoiceCommandHandler>());
 
-// Add settings
-builder.Services.Configure<GeminiApiSettings>(
-    builder.Configuration.GetSection("GeminiApiSettings"));
+#endregion
 
+#region Settings, database configs and external configs
 builder.Services.AddScoped<IDbConnection>(sp =>
 {
     var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
