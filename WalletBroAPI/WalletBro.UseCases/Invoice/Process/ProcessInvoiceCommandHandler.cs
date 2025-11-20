@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Intrinsics.X86;
 using MediatR;
+using WalletBro.UseCases.Contracts.Authentication;
 using WalletBro.UseCases.Contracts.External;
 using WalletBro.UseCases.Contracts.External.DTOs;
 using WalletBro.UseCases.Contracts.Persistence;
@@ -7,12 +8,20 @@ using ExpenseDetail = WalletBro.Core.Entities.ExpenseDetail;
 
 namespace WalletBro.UseCases.Invoice.Process;
 
-public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice, IInvoiceRepository invoiceRepository)
+public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice, 
+    IInvoiceRepository invoiceRepository,
+    IUserRepository userRepository,
+    ICurrentUserService currentUserService)
     : IRequestHandler<ProcessInvoiceCommand, ProcessInvoiceResult>
 {
     public async Task<ProcessInvoiceResult> Handle(ProcessInvoiceCommand request, CancellationToken cancellationToken)
     {
         var result = new ProcessInvoiceResult();
+
+        var user = await userRepository.GetByEmailAsync((currentUserService.Email));
+        
+        if (user == null) return result;
+        
         var reqProcessInvoiceExternal = new ProcessInvoiceRequest()
         {
             FileName = request.FileName,
@@ -25,7 +34,7 @@ public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice, IInvoi
         
         var invoice = new Core.Entities.Invoice
         {
-            UserId = 2,
+            UserId = user.Id,
             Expenses = processInvoiceResult.InvoiceData.Expenses
                 .Select(x => new ExpenseDetail
                 {
