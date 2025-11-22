@@ -1,5 +1,6 @@
 ﻿using System.Runtime.Intrinsics.X86;
 using MediatR;
+using WalletBro.Core.Common;
 using WalletBro.UseCases.Contracts.Authentication;
 using WalletBro.UseCases.Contracts.External;
 using WalletBro.UseCases.Contracts.External.DTOs;
@@ -40,7 +41,7 @@ public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice,
                 {
                     Name = x.Name,
                     UnitPrice = x.UnitPrice,
-                    UnitType = x.UnitType,
+                    UnitType =  Enum.Parse<UnitType>(x.UnitType, ignoreCase: true),
                     CreatedAt = DateTime.Now
                 }).ToList()
         };

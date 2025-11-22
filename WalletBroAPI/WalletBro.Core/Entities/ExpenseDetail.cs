@@ -1,4 +1,6 @@
-﻿namespace WalletBro.Core.Entities;
+﻿using WalletBro.Core.Common;
+
+namespace WalletBro.Core.Entities;
 
 public class ExpenseDetail
 {
@@ -8,7 +10,7 @@ public class ExpenseDetail
 
     public decimal  UnitPrice { get; set; }
     
-    public string UnitType { get; set; } = string.Empty; 
+    public UnitType UnitType { get; set; } = UnitType.Unit; 
     
     public int InvoiceId { get; set; }
     
