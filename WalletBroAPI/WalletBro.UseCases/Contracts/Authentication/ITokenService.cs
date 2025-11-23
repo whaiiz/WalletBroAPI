@@ -2,5 +2,5 @@
 
 public interface ITokenService
 {
-    public string GenerateToken(string email);
+    public string GenerateToken(Core.Entities.User user);
 }

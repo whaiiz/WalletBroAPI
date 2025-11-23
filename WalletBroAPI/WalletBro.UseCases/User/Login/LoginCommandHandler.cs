@@ -27,7 +27,7 @@ public class LoginCommandHandler(IUserRepository repository, ITokenService token
         }
         
         response.IsSuccess = true;
-        response.Token = tokenService.GenerateToken(user.Email);
+        response.Token = tokenService.GenerateToken(user);
         
         return response;
     }

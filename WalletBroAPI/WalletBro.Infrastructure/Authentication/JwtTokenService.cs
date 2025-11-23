@@ -10,14 +10,15 @@ namespace WalletBro.Infrastructure.Authentication;
 
 public class JwtTokenService(IOptions<JwtSettings> settings) : ITokenService
 {
-    public string GenerateToken(string email)
+    public string GenerateToken(Core.Entities.User user)
     {
         var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(settings.Value.SecretKey));
         var credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
 
         var claims = new[]
         {
-            new Claim(JwtRegisteredClaimNames.Email, email),
+            new Claim(JwtRegisteredClaimNames.Email, user.Email),
+            new Claim(JwtRegisteredClaimNames.Name, user.Id.ToString()),
         };
 
         var token = new JwtSecurityToken(
