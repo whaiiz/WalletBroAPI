@@ -2,11 +2,11 @@
 
 public class JwtSettings
 {
-    public string SecretKey { get; set; }
+    public required string SecretKey { get; init; }
     
-    public string Issuer { get; set; }
+    public required string Issuer { get; init; }
     
-    public string Audience { get; set; }
+    public required string Audience { get; init; }
     
-    public uint ExpiresInHours { get; set; }
+    public uint ExpiresInHours { get; init; }
 }

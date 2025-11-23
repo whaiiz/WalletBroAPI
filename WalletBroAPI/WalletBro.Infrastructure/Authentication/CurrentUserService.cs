@@ -1,5 +1,4 @@
-﻿using System.Security.Claims;
-using WalletBro.UseCases.Contracts.Authentication;
+﻿using WalletBro.UseCases.Contracts.Authentication;
 using Microsoft.AspNetCore.Http;
 
 namespace WalletBro.Infrastructure.Authentication
