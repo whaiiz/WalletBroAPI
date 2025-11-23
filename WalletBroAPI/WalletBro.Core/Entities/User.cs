@@ -4,15 +4,15 @@ public class User
 {
     public required Guid Id { get; set; }
     
-    public required string FirstName { get; set; }
+    public required string FirstName { get; init; }
     
-    public string LastName { get; set; } = string.Empty;
+    public string LastName { get; init; } = string.Empty;
     
-    public required string Email { get; set; }
+    public required string Email { get; init; }
     
     public required string PasswordHash { get; set; }
     
-    public required DateTime DateOfBirth { get; set; }
+    public required DateTime DateOfBirth { get; init; }
     
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; init; } = DateTime.Now;
 }

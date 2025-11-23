@@ -4,17 +4,17 @@ namespace WalletBro.Core.Entities;
 
 public class ExpenseDetail
 {
-    public int Id { get; set; }
+    public Guid Id { get; init; }
 
-    public string Name { get; set; } = string.Empty;
+    public string Name { get; init; } = string.Empty;
 
-    public decimal  UnitPrice { get; set; }
+    public decimal UnitPrice { get; init; }
     
-    public UnitType UnitType { get; set; } = UnitType.Unit; 
-    
-    public int InvoiceId { get; set; }
-    
-    public Invoice?  Invoice { get; set; }
+    public UnitType UnitType { get; init; } = UnitType.Unit;
 
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public Guid InvoiceId { get; set; }
+    
+    public Invoice? Invoice { get; init; }
+
+    public DateTime CreatedAt { get; init; } = DateTime.Now;
 }
