@@ -1,6 +1,6 @@
 ﻿namespace WalletBro.UseCases.User.Register;
 
-public class RegisterResult
+public class RegisterUserResult
 {
     public bool IsSuccess { get; set; }
 

@@ -2,7 +2,8 @@
 
 namespace WalletBro.UseCases.User.Register;
 
-public class RegisterCommand() : IRequest<RegisterResult>
+// ReSharper disable ClassNeverInstantiated.Global
+public class RegisterUserCommand() : IRequest<RegisterUserResult>
 {
     public required string FirstName { get; set; }
     
