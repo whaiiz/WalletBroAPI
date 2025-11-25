@@ -7,7 +7,7 @@ public class UseCasesMapsterConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<RegisterCommand, Core.Entities.User>()
+        config.NewConfig<RegisterUserCommand, Core.Entities.User>()
             .Map(dest => dest.PasswordHash, src => src.Password);
     }
 }

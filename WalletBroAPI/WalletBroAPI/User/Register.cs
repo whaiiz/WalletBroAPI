@@ -24,7 +24,7 @@ public class Register(IMediator mediator) : Endpoint<RegisterRequest, ApiRespons
 
     public override async Task HandleAsync(RegisterRequest req, CancellationToken ct)
     {
-        var command = req.Adapt<RegisterCommand>();
+        var command = req.Adapt<RegisterUserCommand>();
         var result = await mediator.Send(command, ct);
         
         if (!result.IsSuccess)
