@@ -2,9 +2,10 @@
 
 namespace WalletBro.UseCases.User.Login;
 
+// ReSharper disable ClassNeverInstantiated.Global
 public class LoginCommand : IRequest<LoginResult>
 {
-    public string Email { get; set; }
+    public required string Email { get; init; }
 
-    public string Password { get; set; }    
+    public required string Password { get; init; }    
 }

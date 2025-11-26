@@ -1,5 +1,4 @@
-﻿using System.Net;
-using System.Text;
+﻿using System.Text;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using Microsoft.Extensions.Options;
@@ -9,8 +8,13 @@ using WalletBro.UseCases.Contracts.External.DTOs;
 
 namespace WalletBro.Infrastructure.External.InvoiceProcessors.Gemini;
 
-public class ProcessInvoiceGemini(IOptions<GeminiApiSettings> settings) : IProcessInvoice
+public partial class ProcessInvoiceGemini(IOptions<GeminiApiSettings> settings) : IProcessInvoice
 {
+    private static readonly JsonSerializerOptions JsonOptions = new()
+    {
+        PropertyNameCaseInsensitive = true
+    };
+    
     public async Task<ProcessInvoiceResponse> ProcessInvoiceAsync(ProcessInvoiceRequest req)
     {
         var response =  new ProcessInvoiceResponse() { IsSuccess = false };
@@ -24,16 +28,12 @@ public class ProcessInvoiceGemini(IOptions<GeminiApiSettings> settings) : IProce
             geminiResponse.EnsureSuccessStatusCode();
             var responseBody = await geminiResponse.Content.ReadAsStringAsync();
             var geminiResponseObj = JsonSerializer.Deserialize<GeminiResponse>(responseBody);
-            var text = geminiResponseObj?.Candidates?.FirstOrDefault()?.Content?.Parts?.FirstOrDefault()?.Text;
+            var text = geminiResponseObj?.Candidates.FirstOrDefault()?.Content?.Parts?.FirstOrDefault()?.Text;
             
             if (string.IsNullOrEmpty(text)) throw new JsonException("Text is empty!");
             
-            var cleanedJson = Regex.Replace(text, @"^```json|```$", "", RegexOptions.Multiline).Trim();
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-            var invoiceData = JsonSerializer.Deserialize<InvoiceData>(cleanedJson, options);
+            var cleanedJson = MyRegex().Replace(text, "").Trim();
+            var invoiceData = JsonSerializer.Deserialize<InvoiceData>(cleanedJson, JsonOptions);
 
             if (invoiceData == null) return response;
             
@@ -42,7 +42,7 @@ public class ProcessInvoiceGemini(IOptions<GeminiApiSettings> settings) : IProce
 
             return response;
         }
-        catch (Exception ex)
+        catch (Exception)
         {
             return response;
         }
@@ -73,9 +73,12 @@ public class ProcessInvoiceGemini(IOptions<GeminiApiSettings> settings) : IProce
         };
         
         return new StringContent(
-            JsonSerializer.Serialize(requestBody, new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase }),
+            JsonSerializer.Serialize(requestBody, JsonOptions),
             Encoding.UTF8,
             "application/json"
         );
     }
+
+    [GeneratedRegex(@"^```json|```$", RegexOptions.Multiline)]
+    private static partial Regex MyRegex();
 }

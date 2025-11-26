@@ -9,7 +9,7 @@ public class WebApiMaspterConfig : IRegister
 {
     public void Register(TypeAdapterConfig config)
     {
-        config.NewConfig<RegisterRequest, RegisterCommand>();
+        config.NewConfig<RegisterRequest, RegisterUserCommand>();
         config.NewConfig<LoginRequest, LoginCommand>();
     }
 }
