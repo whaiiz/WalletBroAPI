@@ -50,6 +50,12 @@
       <Compile Update="User\LoginValidator.cs">
         <DependentUpon>Login.cs</DependentUpon>
       </Compile>
+      <Compile Update="Invoice\GetInvoiceByIdByIdResponse.cs">
+        <DependentUpon>GetInvoiceByIdById.cs</DependentUpon>
+      </Compile>
+      <Compile Update="Invoice\GetInvoicesResponse.cs">
+        <DependentUpon>GetInvoices.cs</DependentUpon>
+      </Compile>
     </ItemGroup>
 
 </Project>

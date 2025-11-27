@@ -1,6 +1,8 @@
 ﻿using Mapster;
+using WalletBro.Core.Entities;
 using WalletBro.UseCases.User.Login;
 using WalletBro.UseCases.User.Register;
+using WalletBroAPI.Dtos.Invoice;
 using WalletBroAPI.User;
 
 namespace WalletBroAPI.Common.Mapping;
