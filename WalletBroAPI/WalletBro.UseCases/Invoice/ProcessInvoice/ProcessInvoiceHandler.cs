@@ -1,16 +1,16 @@
 ﻿using System.Runtime.Intrinsics.X86;
 using MediatR;
+using WalletBro.Core.Common;
 using WalletBro.UseCases.Contracts.Authentication;
 using WalletBro.UseCases.Contracts.External;
 using WalletBro.UseCases.Contracts.External.DTOs;
 using WalletBro.UseCases.Contracts.Persistence;
 using ExpenseDetail = WalletBro.Core.Entities.ExpenseDetail;
 
-namespace WalletBro.UseCases.Invoice.Process;
+namespace WalletBro.UseCases.Invoice.ProcessInvoice;
 
-public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice, 
+public class ProcessInvoiceHandler(IProcessInvoice processInvoice, 
     IInvoiceRepository invoiceRepository,
-    IUserRepository userRepository,
     ICurrentUserService currentUserService)
     : IRequestHandler<ProcessInvoiceCommand, ProcessInvoiceResult>
 {
@@ -18,9 +18,7 @@ public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice,
     {
         var result = new ProcessInvoiceResult();
 
-        var user = await userRepository.GetByEmailAsync((currentUserService.Email));
-        
-        if (user == null) return result;
+        if (currentUserService.UserId == Guid.Empty) return result;
         
         var reqProcessInvoiceExternal = new ProcessInvoiceRequest()
         {
@@ -34,19 +32,19 @@ public class ProcessInvoiceCommandHandler(IProcessInvoice processInvoice,
         
         var invoice = new Core.Entities.Invoice
         {
-            UserId = user.Id,
+            UserId = currentUserService.UserId,
             Expenses = processInvoiceResult.InvoiceData.Expenses
                 .Select(x => new ExpenseDetail
                 {
                     Name = x.Name,
                     UnitPrice = x.UnitPrice,
-                    UnitType = x.UnitType,
+                    UnitType =  Enum.Parse<UnitType>(x.UnitType, ignoreCase: true),
                     CreatedAt = DateTime.Now
                 }).ToList()
         };
         
         var addInvoiceResult = await invoiceRepository.AddAsync(invoice);
-        result.IsSuccess = addInvoiceResult != 0;
+        result.IsSuccess = !string.IsNullOrEmpty(addInvoiceResult);
         
         return result;
     }

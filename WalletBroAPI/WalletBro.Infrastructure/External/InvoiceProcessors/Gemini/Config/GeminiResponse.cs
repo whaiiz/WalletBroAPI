@@ -2,6 +2,7 @@
 
 namespace WalletBro.Infrastructure.External.InvoiceProcessors.Gemini.Config;
 
+// ReSharper disable ClassNeverInstantiated.Global
 public class Content
 {
     [JsonPropertyName("parts")] public List<Part> Parts { get; init; } = [];
@@ -58,7 +59,7 @@ public class UsageMetadata
 public class GeminiResponse
 {
     [JsonPropertyName("candidates")] 
-    public IReadOnlyList<Candidate> Candidates { get; init; } = [];
+    public List<Candidate> Candidates { get; init; } = [];
 
     [JsonPropertyName("usageMetadata")] 
     public UsageMetadata UsageMetadata { get; init; } = new();

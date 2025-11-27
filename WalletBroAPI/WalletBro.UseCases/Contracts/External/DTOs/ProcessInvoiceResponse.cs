@@ -14,6 +14,7 @@ public class InvoiceData
     public List<ExpenseDetail> Expenses { get; init; } = [];
 }
 
+// ReSharper disable ClassNeverInstantiated.Global
 public class ExpenseDetail
 {
     public string Name { get; set; } = string.Empty;

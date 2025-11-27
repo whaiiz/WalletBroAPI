@@ -15,10 +15,18 @@ public class UserRepository(IDbConnection db) : IUserRepository
             WHERE Email = @Email;
         ";
         
-        if (db.State != ConnectionState.Open)
-            db.Open();
-        
         return await db.QueryFirstOrDefaultAsync<User>(sql, new { Email = email });
+    }
+
+    public async Task<User?> GetById(string id)
+    {
+        const string sql = @"
+            SELECT Id, FirstName, LastName, Email, PasswordHash, DateOfBirth, CreatedAt
+            FROM Users
+            WHERE Id = @Id;
+        ";
+        
+        return await db.QueryFirstOrDefaultAsync<User>(sql, new { Id = id });
     }
 
     public async Task<bool> AddAsync(User user)
@@ -27,9 +35,6 @@ public class UserRepository(IDbConnection db) : IUserRepository
             INSERT INTO Users (Id, FirstName, LastName, Email, PasswordHash, DateOfBirth, CreatedAt)
             VALUES (@Id, @FirstName, @LastName, @Email, @PasswordHash, @DateOfBirth, @CreatedAt);
         ";
-            
-        if (db.State != ConnectionState.Open)
-            db.Open();
             
         var rows = await db.ExecuteAsync(sql, user);
         return rows > 0;

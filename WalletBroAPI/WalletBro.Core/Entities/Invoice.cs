@@ -2,13 +2,13 @@
 
 public class Invoice
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public Guid UserId { get; set; }
+    public Guid UserId { get; init; }
 
-    public User? User { get; set; }
+    public User? User { get; init; }
     
-    public List<ExpenseDetail> Expenses { get; set; } = new();
+    public List<ExpenseDetail> Expenses { get; set; } = [];
     
-    public DateTime CreatedAt { get; set; } = DateTime.Now;
+    public DateTime CreatedAt { get; init; } = DateTime.Now;
 }

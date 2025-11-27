@@ -16,7 +16,7 @@ using WalletBro.UseCases.Common.Mappings;
 using WalletBro.UseCases.Contracts.Authentication;
 using WalletBro.UseCases.Contracts.External;
 using WalletBro.UseCases.Contracts.Persistence;
-using WalletBro.UseCases.Invoice.Process;
+using WalletBro.UseCases.Invoice.ProcessInvoice;
 using WalletBroAPI.Common;
 using WalletBroAPI.Common.Mapping;
 using WalletBroAPI.Common.Middlewares;
@@ -69,7 +69,7 @@ builder.Services.AddScoped<IMapper, ServiceMapper>();
 builder.Services.AddSingleton(config);
 builder.Services.AddFastEndpoints();
 builder.Services.AddMediatR(cfg =>
-    cfg.RegisterServicesFromAssemblyContaining<ProcessInvoiceCommandHandler>());
+    cfg.RegisterServicesFromAssemblyContaining<ProcessInvoiceHandler>());
 
 #endregion
 

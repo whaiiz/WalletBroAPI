@@ -1,16 +1,15 @@
 ﻿using FastEndpoints;
 using MediatR;
-using Microsoft.AspNetCore.Http.HttpResults;
-using WalletBro.UseCases.Invoice.Process;
+using WalletBro.UseCases.Invoice.ProcessInvoice;
 using WalletBroAPI.Common;
 
 namespace WalletBroAPI.Invoice;
 
-public class Process(IMediator mediator) : Endpoint<ProcessRequest, ApiResponse<ProcessResponse>>
+public class ProcessInvoice(IMediator mediator) : Endpoint<ProcessRequest, ApiResponse<ProcessResponse>>
 {
     public override void Configure()
     {
-        Post("/invoice/process");
+        Post("/invoices/process");
     }
 
     public override async Task HandleAsync(ProcessRequest req, CancellationToken ct)
