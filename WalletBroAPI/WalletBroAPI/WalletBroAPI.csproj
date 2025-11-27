@@ -23,14 +23,14 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Invoice\Process.Request.cs">
-        <DependentUpon>Process.cs</DependentUpon>
+      <Compile Update="Invoice\ProcessInvoice.Request.cs">
+        <DependentUpon>ProcessInvoice.cs</DependentUpon>
       </Compile>
-      <Compile Update="Invoice\Process.Response.cs">
-        <DependentUpon>Process.cs</DependentUpon>
+      <Compile Update="Invoice\ProcessInvoice.Response.cs">
+        <DependentUpon>ProcessInvoice.cs</DependentUpon>
       </Compile>
-      <Compile Update="Invoice\Process.Validator.cs">
-        <DependentUpon>Process.cs</DependentUpon>
+      <Compile Update="Invoice\ProcessInvoice.Validator.cs">
+        <DependentUpon>ProcessInvoice.cs</DependentUpon>
       </Compile>
       <Compile Update="User\Register.Request.cs">
         <DependentUpon>Register.cs</DependentUpon>

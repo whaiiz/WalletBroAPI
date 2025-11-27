@@ -11,5 +11,7 @@ public class WebApiMaspterConfig : IRegister
     {
         config.NewConfig<RegisterRequest, RegisterUserCommand>();
         config.NewConfig<LoginRequest, LoginCommand>();
+        config.NewConfig<WalletBro.Core.Entities.Invoice, InvoiceDto>();
+        config.NewConfig<ExpenseDetail, ExpenseDetailDto>();
     }
 }
